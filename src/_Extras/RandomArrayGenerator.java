@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class RandomArrayGenerator {
 
     public static void main(String[] args) {
-        int[] arr = intArrayGenerator(10);
+        int[] arr = intArrayGenerator(100);
         System.out.println(Arrays.toString(intArrayGeneratorInAscendingOrder(arr)));
         System.out.println(Arrays.toString(intArrayGeneratorInDescendingOrder(arr)));
     }
@@ -14,7 +14,7 @@ public class RandomArrayGenerator {
         int arr[] = new int[size];
 
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random() * 1000 + 1);
+            arr[i] = (int) (Math.random() * 100 + 1);
         }
         return arr;
     }
