@@ -6,26 +6,38 @@ public class PQ11_SearchingInMatrics {
         int target = 60;
 
         String foundOnIndex = "-1";
+        int rowStart = 0;
+        int rowEnd = arr.length - 1;
 
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i][0] <= target && target <= arr[i][arr[i].length - 1]) {
-                int start = 0;
-                int end = arr[i].length - 1;
+        while (rowStart <= rowEnd) {
+            int rowMid = rowStart + (rowEnd - rowStart) / 2;
 
-                while (start <= end) {
-                    int mid = start + (0) / 2;
-                    if (target == arr[i][mid]) {
-                        foundOnIndex = "arr [" + (i + 1) + "][" + (mid + 1) + "]";
+            int colStart = 0;
+            int colEnd = arr[rowMid].length - 1;
+
+            if (arr[rowMid][colStart] > target)
+                rowEnd = rowMid - 1;
+
+            else if (arr[rowMid][colEnd] < target)
+                rowStart = rowMid + 1;
+
+            else {
+                while (colStart <= colEnd) {
+                    int colMid = colStart + (colEnd - colStart) / 2;
+                    if (arr[rowMid][colMid] == target) {
+                        foundOnIndex = "Element found arr[" + rowMid + "] [" + colMid + "] ";
                         break;
-                    } else if (target < arr[i][mid]) {
-                        end = mid - 1;
-                    } else {
-                        start = mid + 1;
-                    }
+                    } else if (arr[rowMid][colMid] < target)
+                        colStart = colMid + 1;
+                    else
+                        colEnd = colMid - 1;
                 }
             }
-        }
 
-        System.out.println(foundOnIndex);
+            if (!foundOnIndex.equals("-1"))
+                break;
+
+        }
+        System.out.println("Result => " + foundOnIndex);
     }
 }
